@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<h1>Versão Inicial</h1>
+		<h1>Initial Version</h1>
 	</div>
 </template>
 
