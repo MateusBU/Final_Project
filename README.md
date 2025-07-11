@@ -49,3 +49,27 @@ Use this to store article categories or topics in the database.
 
 #### `knex migrate:make create_table_articles`
 Creates a migration file for the articles table.
+
+#### `knex migrate:latest`
+
+#### `knex migrate:rollback`
+
+\dt
+
+                             List
+    Schema  |         Name         |  Type  |   Owner
+    --------+----------------------+--------+----------
+    public  | articles             | tabela | postgres
+    public  | categories           | tabela | postgres
+    public  | knex_migrations      | tabela | postgres
+    public  | knex_migrations_lock | tabela | postgres
+    public  | users                | tabela | postgres
+
+
+knowledge=# select * from knex_migrations;
+
+        id |                   name                    | batch |       migration_time
+        ----+-------------------------------------------+-------+----------------------------
+        1 | 20250711165758_create_table_users.js      |     1 | 2025-07-11 14:31:02.771-03
+        2 | 20250711165845_create_table_categories.js |     1 | 2025-07-11 14:31:02.788-03
+        3 | 20250711165901_create_table_articles.js   |     1 | 2025-07-11 14:31:02.799-03
