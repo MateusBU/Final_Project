@@ -1,5 +1,8 @@
 const app = require('express')()
 const consign = require('consign');
+const db = require('./config/db')
+
+app.db = db; //this sb is knex (knex.js). Now it is possible to use get, post, delete,...
 
 consign()
     .then('./config/middlewares.js')
