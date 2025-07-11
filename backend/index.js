@@ -3,6 +3,8 @@ const consign = require('consign');
 
 consign()
     .then('./config/middlewares.js')
+    .then('./api') //every folder from api is loaded by consign
+    .then('./config/routes.js')
     .into(app)
 
 //port 3000
