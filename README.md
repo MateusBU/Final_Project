@@ -54,7 +54,9 @@ Creates a migration file for the articles table.
 
 #### `knex migrate:rollback`
 
-\dt
+### Nackend Commands postgreSQL
+
+#### `\dt`
 
                              List
     Schema  |         Name         |  Type  |   Owner
@@ -66,7 +68,7 @@ Creates a migration file for the articles table.
     public  | users                | tabela | postgres
 
 
-knowledge=# select * from knex_migrations;
+#### `select * from knex_migrations;`
 
         id |                   name                    | batch |       migration_time
         ----+-------------------------------------------+-------+----------------------------
