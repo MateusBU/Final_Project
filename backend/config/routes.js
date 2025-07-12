@@ -6,4 +6,14 @@ module.exports = app =>{
 
     app.route('/users/:id')    //two different urls calls tha same function (save)
         .put(app.api.user.save)
+        .get(app.api.user.getByID)
+
+    app.route('/categories')
+        .get(app.api.category.get)
+        .post(app.api.category.save)
+
+    app.route('/categories/:id')
+        .get(app.api.category.getByID)
+        .put(app.api.category.save)
+        .delete(app.api.category.remove)
 }

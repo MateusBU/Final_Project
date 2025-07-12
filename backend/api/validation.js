@@ -22,3 +22,4 @@ module.exports = app =>{
 }
 
 //validation password (minimun length, at least one uppercase)
+//validation name length (max length of a category)

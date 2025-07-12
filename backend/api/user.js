@@ -66,5 +66,19 @@ module.exports = app =>{
             .catch(err => res.status(500).send(err));
     }
 
-    return {save, get};
+    //get all user of database
+    const getByID = (req, res) =>{
+
+        const user = {...req.body}; //json on url
+        if(req.params.id) user.id = req.params.id
+
+        app.db('users')
+            .select('id', 'name', 'email', 'admin')
+            .where({id: user.id})
+            .first()
+            .then(user => res.json(user))
+            .catch(err => res.status(500).send(err, 'User not found'));
+    }
+
+    return {save, get, getByID};
 }
