@@ -70,8 +70,8 @@ Creates a migration file for the articles table.
 
 #### `select * from knex_migrations;`
 
-        id |                   name                    | batch |       migration_time
-        ----+-------------------------------------------+-------+----------------------------
-        1 | 20250711165758_create_table_users.js      |     1 | 2025-07-11 14:31:02.771-03
-        2 | 20250711165845_create_table_categories.js |     1 | 2025-07-11 14:31:02.788-03
-        3 | 20250711165901_create_table_articles.js   |     1 | 2025-07-11 14:31:02.799-03
+    id |                   name                    | batch |       migration_time
+    ----+-------------------------------------------+-------+----------------------------
+    1 | 20250711165758_create_table_users.js      |     1 | 2025-07-11 14:31:02.771-03
+    2 | 20250711165845_create_table_categories.js |     1 | 2025-07-11 14:31:02.788-03
+    3 | 20250711165901_create_table_articles.js   |     1 | 2025-07-11 14:31:02.799-03
