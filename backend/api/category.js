@@ -94,5 +94,26 @@ module.exports = app =>{
             .catch(err => res.status(500).send(err));
     }
     
-    return {save, get, remove, getByID};
+    //Recursively builds a tree structure from a flat list of categories 
+    // by nesting child categories under their respective parents using the parentId field.
+    const toTree = (categories, tree) =>{
+        if(!tree) tree = categories.filter(c => !c.parentId) //to create the first category of a tree
+        tree = tree.map(parentNode =>{
+            // if true, node is child of parentNode
+            const isChild = node => node.parentId == parentNode.id;
+            parentNode.children = toTree(categories, categories.filter(isChild));
+            return parentNode
+        });
+        return tree;
+    }
+
+    //Fetches all categories from the database, transforms them into 
+    // a tree using toTree, and returns the result as JSON.
+    const getTree = (req, res) =>{
+        app.db('categories')
+            .then(categories => res.json(toTree(withPath(categories))))
+            .catch(err => res.status(500).send(err));
+    }
+
+    return {save, get, remove, getByID, getTree};
 }
