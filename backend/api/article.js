@@ -1,3 +1,4 @@
+const queries = require('./query')
 module.exports = app =>{
     const {existsOrError, notExistsOrError, equalsOrError} = app.api.validation;
     
@@ -77,6 +78,29 @@ module.exports = app =>{
             })
             .catch(err => res.status(500).send(err));
     }
+    // Receives a categoryId from the URL (as a route parameter).
+    // Receives a page number (page) from the query string for pagination.
+    // Fetches the root category and its subcategories using a raw SQL query (queries.categoryWithChildren).
+    // Extracts the IDs of those categories (parent + children).
+    // Retrieves articles related to those categories, along with the user's (author's) name.
+    // Returns the paginated articles as JSON.
+    const getCategory = async(req, res) =>{
+        const categoryId = req.params.id; 
+        const page = req.query.page || 1;
+        const categories = await app.db.raw(queries.categoryWithChildren, categoryId);
+        const ids = categories.rows.map(c => c.id); //Parent's id and children's id
 
-    return {save, remove, get, getById};
+        app.db({a: 'articles', u: 'users'})
+            .select('a.id', 'a.name', 'a.description', 'a.imageUrl', {writer: 'u.name'})
+            .limit(limit).offset((page * limit) - limit)
+// Filters articles where the user's ID matches the article's userId (i.e., links articles to their authors).
+            .whereRaw('?? = ??', ['u.id', 'a.userId'])
+// Filters articles to include only those whose categoryId is in the list of IDs (main category + subcategories).
+            .whereIn('categoryId', ids)
+            .orderBy('a.id', 'desc')
+            .then(articles => res.json(articles))
+            .catch(err => res.status(500).send(err));
+    }
+
+    return {save, remove, get, getById, getCategory};
 }
