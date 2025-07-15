@@ -1,4 +1,10 @@
 module.exports = app =>{
+    //public urls
+    app.post('/signup', app.api.user.save)
+    app.post('/signin', app.api.auth.signin)
+    app.post('/validateToken', app.api.auth.validateToken)
+
+
     //when some request from url /users, post is used
     app.route('/users')
         .post(app.api.user.save) //it is possible, because of consign. api is the folder
