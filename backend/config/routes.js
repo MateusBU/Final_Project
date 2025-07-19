@@ -7,14 +7,17 @@ module.exports = app =>{
 
     //when some request from url /users, post is used
     app.route('/users')
+        .all(app.config.passport.authenticate()) //every methods (post, get, ...) will pass through this function
         .post(app.api.user.save) //it is possible, because of consign. api is the folder
         .get(app.api.user.get)
 
     app.route('/users/:id')    //two different urls calls tha same function (save)
+        .all(app.config.passport.authenticate())
         .put(app.api.user.save)
         .get(app.api.user.getByID)
 
     app.route('/categories')
+        .all(app.config.passport.authenticate())
         .get(app.api.category.get)
         .post(app.api.category.save)
 
@@ -23,22 +26,27 @@ module.exports = app =>{
 // Make sure to define more specific routes before general ones.
 
     app.route('/categories/tree')
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getTree)
 
     app.route('/categories/:id')
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getByID)
         .put(app.api.category.save)
         .delete(app.api.category.remove)
 
     app.route('/articles')
+        .all(app.config.passport.authenticate())
         .get(app.api.article.get)
         .post(app.api.article.save)
 
     app.route('/articles/:id')
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getById)
         .put(app.api.article.save)
         .delete(app.api.article.remove)
 
     app.route('/categories/:id/articles')
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getCategory)
 }

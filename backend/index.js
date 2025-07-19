@@ -5,6 +5,7 @@ const db = require('./config/db')
 app.db = db; //this sb is knex (knex.js). Now it is possible to use get, post, delete,...
 
 consign()
+    .include('./config/passport.js')
     .then('./config/middlewares.js')
     .then('./api/validation.js')
     .then('./api') //every folder from api is loaded by consign
