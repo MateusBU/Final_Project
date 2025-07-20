@@ -12,6 +12,7 @@ consign()
     .then('./config/middlewares.js')
     .then('./api/validation.js')
     .then('./api') //every folder from api is loaded by consign
+    .then('./schedule')
     .then('./config/routes.js')
     .into(app)
 
