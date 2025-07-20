@@ -14,7 +14,11 @@ module.exports = app =>{
     // Save a new user or update an existing one
     const save = async(req, res) =>{
         const user = {...req.body}; //json on url
-        if(req.params.id) user.id = req.params.id
+        if(req.params.id) user.id = req.params.id;
+
+        //user is not registered as admin
+        if(!req.originalUrl.startsWith('/users')) user.admin = false;
+        if(!req.user || !req.user.admin) user.admin = false; //to register an admin, must be other admin
 
         try{
             // Verify if all required fields are provided and valid
