@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<mainHeader />
+		<mainHeader title="Mateus - knowledge base" :hideToggle="false"/>
 		<mainMenu />
 		<mainContent />
 		<mainFooter />

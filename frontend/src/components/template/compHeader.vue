@@ -1,12 +1,36 @@
 <template>
-	<div class="header">
-		
-	</div>
+	<header class="header">
+		<a class="toggle" @click="toggleMenu" v-if="!hideToggle">
+            <i class="fa fa-lg" :class="icon"></i>
+        </a>
+        <h1 class="title">
+            {{ title }}
+        </h1>
+	</header>
 </template>
 
 <script>
 export default {
-	name: 'mainHeader'
+	name: 'mainHeader',
+    // Props are passed from the parent component
+    props:{
+        title: String,
+        hideToggle: Boolean
+    },
+    // Computed properties are cached and only re-evaluated
+    // when their reactive dependencies change.
+    computed:{
+        // This returns a fixed icon class for now.
+        icon(){
+            return "fa-angle-left"
+        }
+    }
+   ,
+   methods:{
+        toggleMenu(){
+            
+        }
+   } 
 }
 </script>
 
@@ -18,5 +42,40 @@ export default {
         display: flex;
         justify-content: center; /*main axis */
         align-items: center; /*cross axis */
+    }
+
+    .title{
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: 100;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .title a{
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    header{
+        color:#1e469a;
+    }
+
+    header.header > a.toggle{
+        width: 60px;
+        height: 100%;
+        color: #fff;
+
+        justify-self: flex-start;
+        text-decoration: none;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header.header > a.toggle:hover{
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 50%
     }
 </style>
