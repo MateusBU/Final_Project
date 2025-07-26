@@ -131,3 +131,35 @@ We use **Passport.js** with the **JWT strategy** to protect our routes:
      .all(passport.authenticate('jwt', { session: false }))
      .get(controller.getData)
 
+
+# Frontend Project Setup and Commands
+
+## Vuex Store Configuration
+
+Vuex helps you centralize and organize your app’s shared state, making it easier to manage and debug as your app grows.
+
+## Breakdown
+
+### Import Vuex
+
+```js
+import { createStore } from 'vuex'
+```
+
+### Registering the Store in Your Vue App
+```js
+import store from './config/store'
+app.use(store)   // register Vuex store
+```
+### Read State
+
+```js
+console.log(this.$store.state.isMenuVisible)
+```
+
+### Commit mutations
+```js
+this.$store.commit('toggleMenu')          // toggles visibility
+this.$store.commit('toggleMenu', true)    // explicitly show menu
+this.$store.commit('toggleMenu', false)   // explicitly hide menu
+```

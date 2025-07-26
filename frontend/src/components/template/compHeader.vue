@@ -22,13 +22,15 @@ export default {
     computed:{
         // This returns a fixed icon class for now.
         icon(){
-            return "fa-angle-left"
+            return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down";
         }
     }
    ,
    methods:{
+    //this.$store ->  is the standard way to access that object inside any Vue component.
         toggleMenu(){
-            
+            //this.$store.commit('toggleMenu', true) params isVisible receives true
+            this.$store.commit('toggleMenu')
         }
    } 
 }
