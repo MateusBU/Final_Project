@@ -163,3 +163,9 @@ this.$store.commit('toggleMenu')          // toggles visibility
 this.$store.commit('toggleMenu', true)    // explicitly show menu
 this.$store.commit('toggleMenu', false)   // explicitly hide menu
 ```
+
+## `<router-view>`
+
+The `<router-view>` tag is a built-in component provided by Vue Router. It serves as a placeholder that Vue Router uses to display the component corresponding to the current route.
+
+For example, if the route is `/admin`, and the route config points to an `AdminPages.vue` component, then `<router-view>` will render that component dynamically.

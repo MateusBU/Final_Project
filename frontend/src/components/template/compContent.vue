@@ -1,6 +1,7 @@
 <template>
 	<div class="content">
-		
+        <!-- Renders the component matching the current route -->
+		<router-view></router-view> 
 	</div>
 </template>
 
