@@ -6,16 +6,21 @@
         <h1 class="title">
             {{ title }}
         </h1>
+        <userDropdown v-if="!hideUserDropdown"/>
 	</header>
 </template>
 
 <script>
+import UserDropdown from "./userDropdown.vue";
+
 export default {
 	name: 'mainHeader',
+    components: {UserDropdown},
     // Props are passed from the parent component
     props:{
         title: String,
-        hideToggle: Boolean
+        hideToggle: Boolean,
+        hideUserDropdown: Boolean
     },
     // Computed properties are cached and only re-evaluated
     // when their reactive dependencies change.
@@ -77,7 +82,8 @@ export default {
     }
 
     header.header > a.toggle:hover{
+        color: #fff;
         background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 50%
+        border-radius: 10%;
     }
 </style>

@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "axios": "1.10.0",
+    "bootstrap": "^5.3.7",
     "font-awesome": "4.7.0",
     "highlightjs": "9.16.2",
     "liquor-tree": "0.2.70",
+    "md5": "^2.3.0",
     "vue": "3.5.17",
-    "vue-gravatar": "1.4.1",
     "vue-mq": "1.0.1",
     "vue-router": "4.5.1",
     "vue-toasted": "1.1.28",

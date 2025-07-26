@@ -4,7 +4,11 @@ import { createStore } from 'vuex'  // Import the createStore function from Vuex
 const store = createStore({
   // State holds the reactive data shared across components
   state: {
-    isMenuVisible: true  // Boolean flag to control menu visibility
+    isMenuVisible: true,  // Boolean flag to control menu visibility
+    user:{
+      name: 'Mock User',
+      email: 'mock@gmail.com'
+    }
   },
   
   // Mutations are functions responsible for synchronously changing the state

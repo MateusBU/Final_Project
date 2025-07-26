@@ -1,7 +1,8 @@
 import 'font-awesome/css/font-awesome.css'
 import { createApp } from 'vue'
-import App from './App.vue'  // sempre coloque a extensão .vue para evitar problemas
+import App from './App.vue' 
 import store from './config/store';
+import './config/bootstrap'
 
 const app = createApp(App)
 

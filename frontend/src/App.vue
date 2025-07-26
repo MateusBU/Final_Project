@@ -1,6 +1,9 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<mainHeader title="Mateus - knowledge base" :hideToggle="false"/>
+		<mainHeader title="Mateus - knowledge base" 
+			:hideToggle="false"
+			:hideUserDropdown="false"	
+		/>
 		<mainMenu />
 		<mainContent />
 		<mainFooter />
