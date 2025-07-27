@@ -3,10 +3,12 @@ import { createApp } from 'vue'
 import App from './App.vue' 
 import store from './config/store';
 import router from './config/router';
-import './config/bootstrap'
+import setupBootstrap from './config/bootstrap'
+
 
 const app = createApp(App)
     .use(store) // registers the Vuex store in the application
     .use(router)
 
-    app.mount('#app')
+setupBootstrap(app)
+app.mount('#app')
