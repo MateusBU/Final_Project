@@ -33,11 +33,8 @@ export default {
     },
     methods:{
         getStats(){
-            console.log('oi')
             axios.get(`${baseApiUrl}/stats`)
                 .then(res => this.stat = res.data);
-
-            console.log(this.stat)
         }
     },
     mounted(){
