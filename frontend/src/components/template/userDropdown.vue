@@ -44,7 +44,7 @@ export default {
 
     .user-dropdown:hover{
         background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 10%;
+        border-radius: 10px;
     }
 
     .user-dropdown-img{
