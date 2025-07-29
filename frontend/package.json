@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "axios": "1.10.0",
     "bootstrap": "^5.3.7",
     "bootstrap-vue-next": "^0.30.4",
@@ -19,6 +20,7 @@
     "vue-mq": "1.0.1",
     "vue-router": "4.5.1",
     "vue-toasted": "1.1.28",
+    "vue-toastification": "^2.0.0-rc.5",
     "vuex": "4.1.0"
   },
   "devDependencies": {

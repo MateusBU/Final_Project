@@ -169,3 +169,34 @@ this.$store.commit('toggleMenu', false)   // explicitly hide menu
 The `<router-view>` tag is a built-in component provided by Vue Router. It serves as a placeholder that Vue Router uses to display the component corresponding to the current route.
 
 For example, if the route is `/admin`, and the route config points to an `AdminPages.vue` component, then `<router-view>` will render that component dynamically.
+
+## Toast Notifications
+
+This project uses [Vue Toastification](https://github.com/Maronato/vue-toastification) to display toast messages for user feedback.
+
+### Installation
+
+```bash
+npm install vue-toastification
+```
+
+### Setup
+
+In your main entry file (e.g., `main.js` or `main.ts`):
+
+```js
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+
+app.use(Toast, {
+  timeout: 3000,     // Toasts disappear after 3 seconds
+  icon: true         // Enables icons (like ✅ or ❌)
+})
+```
+### 💡 Why Use Toasts?
+
+Toast notifications are lightweight, non-blocking UI elements used to provide:
+
+- ✅ **Success feedback** (e.g., user created)
+- ❌ **Error alerts** (e.g., failed request)
+- ℹ️ **General messages** without disrupting the user flow

@@ -9,8 +9,8 @@ module.exports = app =>{
 
     //when some request from url /users, post is used
     app.route('/users')
-        //.all(app.config.passport.authenticate()) //every methods (post, get, ...) will pass through this function
-        .post(admin(app.api.user.save)) //it is possible, because of consign. api is the folder
+        //TODO descomentar .all(app.config.passport.authenticate()) //every methods (post, get, ...) will pass through this function
+        .post(app.api.user.save) //TODO colocar admin()  //it is possible, because of consign. api is the folder
         .get(app.api.user.get)
 
     app.route('/users/:id')    //two different urls calls tha same function (save)
@@ -54,6 +54,6 @@ module.exports = app =>{
         .get(app.api.article.getCategory)
 
     app.route('/stats')
-        // .all(app.config.passport.authenticate())
+        // .all(app.config.passport.authenticate()) //TODO descomentar
         .get(app.api.stats.get)
 }
