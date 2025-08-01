@@ -22,7 +22,7 @@ module.exports = app =>{
     app.route('/categories')
         //TODO .all(app.config.passport.authenticate())
         .get(app.api.category.get)//TODO .get(admin(app.api.category.get))
-        .post(admin(app.api.category.save))
+        .post(app.api.category.save)//TODO .post(admin(app.api.category.save))
 
 // Route order matters:
 // Routes are matched top-down, so the first match is used.

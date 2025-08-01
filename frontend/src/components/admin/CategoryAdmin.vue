@@ -24,12 +24,23 @@
             </b-row>
         </b-form>
 
+        <b-row>
+            <b-col xs="12">
+                <b-button variant="primary" v-if="mode === 'save'"
+                    @click="save">Save</b-button>
+                <b-button variant="danger" v-if="mode === 'remove'"
+                    @click="remove">Delete</b-button>
+                <b-button class="m-2" @click="reset">Cancel</b-button>
+            </b-col>
+        </b-row>
+
         <b-table hover striped :items="categories" :fields="fields">
         </b-table>
     </div>
 </template>
 
 <script>
+import { showSuccess, showError } from '@/config/msg'
 import {baseApiUrl} from '@/global';
 import axios from 'axios';
 
@@ -61,6 +72,27 @@ export default {
         loadCategories(){
             const url = `${baseApiUrl}/categories`;
             axios.get(url).then(res => {this.categories = res.data;});
+        },
+        save(){
+            const method = this.category.id ? 'put' : 'post';
+            const id = this.category.id ? `${this.category.id}` : '';
+            
+            axios[method](`${baseApiUrl}/categories${id}`, this.category)
+                .then(() =>{
+                    showSuccess();
+                    this.reset();
+                })
+                .catch(err => {
+                const msg = typeof err.response?.data === 'string'
+                    ? err.response.data
+                    : err.response?.data?.msg || 'Unexpected error'
+                showError({ msg })
+                });
+        },
+        reset(){
+            this.mode = 'save';
+            this.category = {};
+            this.loadCategories();
         },
     },
     computed: {
