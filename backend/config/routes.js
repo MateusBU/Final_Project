@@ -20,8 +20,8 @@ module.exports = app =>{
         .delete(admin(app.api.user.remove))
 
     app.route('/categories')
-        .all(app.config.passport.authenticate())
-        .get(admin(app.api.category.get))
+        //TODO .all(app.config.passport.authenticate())
+        .get(app.api.category.get)//TODO .get(admin(app.api.category.get))
         .post(admin(app.api.category.save))
 
 // Route order matters:

@@ -12,6 +12,7 @@ import {
   BFormGroup,
   BFormInput,
   BFormCheckbox,
+  BFormSelect,
   BButton,
 } from 'bootstrap-vue-next'
 
@@ -26,5 +27,6 @@ export default function setupBootstrap(app) {
   app.component('BFormGroup', BFormGroup)
   app.component('BFormInput', BFormInput)
   app.component('BFormCheckbox', BFormCheckbox)
+  app.component('BFormSelect', BFormSelect)
   app.component('BButton', BButton)
 }
