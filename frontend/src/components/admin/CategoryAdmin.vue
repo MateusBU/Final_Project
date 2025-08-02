@@ -115,7 +115,11 @@ export default {
         },
         loadCategory(category, mode = 'save'){
             this.mode = mode;
-            this.category = {...category}; //load the category data
+            this.category = {
+                id: category.id,
+                name: category.name,
+                parentId: category.parentId,
+            }; //load the category data, exclude path
         },
     },
     computed: {

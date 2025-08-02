@@ -1,13 +1,17 @@
 module.exports = app =>{
-    const {existsOrError, notExistsOrError, equalsOrError} = app.api.validation;
+    const {existsOrError, notExistsOrError, notEqualsOrError} = app.api.validation;
 
     const save = (req, res) =>{
-        const category = { ...req.body}
+        const category = {
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId
+        } //avoid getting different params
         if(req.params.id) category.id = req.params.id;
 
         try{
             existsOrError(category.name, 'Name required');
-            notequalsOrError(parseInt(cateogry.id), category.parentId,
+            notEqualsOrError(parseInt(category.id), category.parentId,
         'Category and Category Parent must be different');
         }
         catch(msg){
