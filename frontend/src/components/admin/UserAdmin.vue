@@ -114,10 +114,7 @@ export default {
                     this.reset();
                 })
                 .catch(err => {
-                const msg = typeof err.response?.data === 'string'
-                    ? err.response.data
-                    : err.response?.data?.msg || 'Unexpected error'
-                showError({ msg })
+                    showError(err)
                 });
         },
         reset(){
@@ -127,16 +124,13 @@ export default {
         },
         remove(){
             const id = this.user.id;
-            axios.delete(`${baseApiUrl}/users${id}`)
+            axios.delete(`${baseApiUrl}/users/${id}`)
                 .then(() =>{
                     showSuccess();
                     this.reset();
                 })
                 .catch(err => {
-                const msg = typeof err.response?.data === 'string'
-                    ? err.response.data
-                    : err.response?.data?.msg || 'Unexpected error'
-                showError({ msg })
+                    showError(err)
                 });
         },
         loadUser(user, mode = 'save'){

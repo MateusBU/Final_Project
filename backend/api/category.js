@@ -7,17 +7,19 @@ module.exports = app =>{
 
         try{
             existsOrError(category.name, 'Name required');
+            notequalsOrError(parseInt(cateogry.id), category.parentId,
+        'Category and Category Parent must be different');
         }
         catch(msg){
             return res.status(400).send(msg);
         }
-
         if(category.id){
+            console.log(category)
             app.db('categories')
                 .update(category)
-                .where({id: category.id})
+                .where({ id: category.id })
                 .then(_ => res.status(204).send())
-                .catch(err => res.status(500).send(err));
+                .catch(err => res.status(500).send(err))
         }
         else{
             app.db('categories')

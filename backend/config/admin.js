@@ -3,8 +3,14 @@ module.exports = middleware =>{
         if(req.user.admin){
             middleware(req, res, next);
         }
+        else if(!req.user){
+             res.status(401).send({ msg: 'User not authenticated' });
+        }
+        else if (!req.user.admin){
+            res.status(403).send({ msg: 'Admin privileges required' });
+        }
         else{
-            res.status(401).send('User is not admin.');
+            res.status(500).send({ msg: 'Unexpected error' });
         }
     }
 }

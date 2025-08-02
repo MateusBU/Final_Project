@@ -7,8 +7,9 @@
                 <b-form-group label="Name" label-for="category-name"> 
                     <b-form-input id="category-name" type="text"
                     v-model="category.name" required
+                    :readonly="mode === 'remove'"
+                    :style="mode === 'remove' ? 'background-color: #e0e0e0;' : ''"
                     placeholder="Inform the Category Name"/>
-
                 </b-form-group>
             </b-row>
         
@@ -16,10 +17,10 @@
                 <b-form-group label="Category Parent" label-for="parentId-name"> 
                     <b-form-select id="parentId-name"
                         :options="categoriesOptions"
+                        :readonly="mode === 'remove'"
+                        :style="mode === 'remove' ? 'background-color: #e0e0e0;' : ''"
                         v-model="category.parentId">
-
                     </b-form-select>
-
                 </b-form-group>
             </b-row>
         </b-form>
@@ -35,6 +36,15 @@
         </b-row>
 
         <b-table hover striped :items="categories" :fields="fields">
+            <template v-slot:cell(actions)="data">
+                <b-button variant="warning" @click="loadCategory(data.item)" class="me-2 mb-1">
+                    <i class="fa fa-pencil"></i>
+                </b-button>
+                
+                <b-button variant="danger" @click="loadCategory(data.item, 'remove')">
+                    <i class="fa fa-trash"></i>
+                </b-button>
+            </template>
         </b-table>
     </div>
 </template>
@@ -65,6 +75,7 @@ export default {
                     }
                 },
                 {key: 'path', label: 'Path', sortable: true},
+                {key: 'actions', label: 'Actions'}
             ],
         }
     },
@@ -75,24 +86,36 @@ export default {
         },
         save(){
             const method = this.category.id ? 'put' : 'post';
-            const id = this.category.id ? `${this.category.id}` : '';
-            
+            const id = this.category.id ? `/${this.category.id}` : '';
+            console.log(method)
             axios[method](`${baseApiUrl}/categories${id}`, this.category)
                 .then(() =>{
                     showSuccess();
                     this.reset();
                 })
                 .catch(err => {
-                const msg = typeof err.response?.data === 'string'
-                    ? err.response.data
-                    : err.response?.data?.msg || 'Unexpected error'
-                showError({ msg })
+                    showError(err)
                 });
         },
         reset(){
             this.mode = 'save';
             this.category = {};
             this.loadCategories();
+        },
+        remove(){
+            const id = this.category.id;
+            axios.delete(`${baseApiUrl}/categories/${id}`)
+                .then(() =>{
+                    showSuccess();
+                    this.reset();
+                })
+                .catch(err => {
+                    showError(err)
+                });
+        },
+        loadCategory(category, mode = 'save'){
+            this.mode = mode;
+            this.category = {...category}; //load the category data
         },
     },
     computed: {

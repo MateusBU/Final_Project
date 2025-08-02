@@ -18,7 +18,11 @@ module.exports = app =>{
     function equalsOrError(valueA, valueB, msg){
         if(valueA !== valueB) throw msg;
     }
-    return {existsOrError, notExistsOrError, equalsOrError}
+
+    function notequalsOrError(valueA, valueB, msg){
+        if(valueA == valueB) throw msg;
+    }
+    return {existsOrError, notExistsOrError, equalsOrError, notequalsOrError}
 }
 
 //validation password (minimun length, at least one uppercase)

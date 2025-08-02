@@ -14,29 +14,29 @@ module.exports = app =>{
         .get(app.api.user.get)
 
     app.route('/users/:id')    //two different urls calls tha same function (save)
-        .all(app.config.passport.authenticate())
-        .put(admin(app.api.user.save))
+        //.all(app.config.passport.authenticate())
+        .put(app.api.user.save)
         .get(admin(app.api.user.getByID))
-        .delete(admin(app.api.user.remove))
+        .delete(app.api.user.remove)
 
     app.route('/categories')
         //TODO .all(app.config.passport.authenticate())
-        .get(app.api.category.get)//TODO .get(admin(app.api.category.get))
         .post(app.api.category.save)//TODO .post(admin(app.api.category.save))
+        .get(app.api.category.get)//TODO .get(admin(app.api.category.get))
 
 // Route order matters:
 // Routes are matched top-down, so the first match is used.
 // Make sure to define more specific routes before general ones.
 
     app.route('/categories/tree')
-        .all(app.config.passport.authenticate())
+        //.all(app.config.passport.authenticate())
         .get(app.api.category.getTree)
 
     app.route('/categories/:id')
-        .all(app.config.passport.authenticate())
+        //.all(app.config.passport.authenticate())
         .get(app.api.category.getByID)
-        .put(admin(app.api.category.save))
-        .delete(admin(app.api.category.remove))
+        .put(app.api.category.save)
+        .delete(app.api.category.remove)
 
     app.route('/articles')
         .all(app.config.passport.authenticate())
