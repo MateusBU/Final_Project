@@ -6,6 +6,8 @@ import router from './config/router';
 import setupBootstrap from './config/bootstrap'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import 'quill/dist/quill.snow.css'
+
 
 const app = createApp(App)
     .use(store) // registers the Vuex store in the application

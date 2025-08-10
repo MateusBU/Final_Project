@@ -14,7 +14,7 @@ module.exports = app =>{
             existsOrError(article.content, 'Content is required');
         }
         catch(msg){
-            res.status(400).send(msg);
+           return res.status(400).send(msg);
         }
 
 

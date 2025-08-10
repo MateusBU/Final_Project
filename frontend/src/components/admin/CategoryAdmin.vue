@@ -15,12 +15,13 @@
         
             <b-row class="mt-2">
                 <b-form-group label="Category Parent" label-for="parentId-name"> 
-                    <b-form-select id="parentId-name"
-                        :options="categoriesOptions"
-                        :readonly="mode === 'remove'"
-                        :style="mode === 'remove' ? 'background-color: #e0e0e0;' : ''"
-                        v-model="category.parentId">
-                    </b-form-select>
+                    <b-form-select v-if="mode === 'save'"
+                        id="parentId-name"
+                        :options="categories" v-model="category.parentId" />
+                    <b-form-input v-else
+                        id="parentId-name" type="text"
+                        v-model="category.path"
+                        readonly />
                 </b-form-group>
             </b-row>
         </b-form>
@@ -82,7 +83,12 @@ export default {
     methods:{
         loadCategories(){
             const url = `${baseApiUrl}/categories`;
-            axios.get(url).then(res => {this.categories = res.data;});
+            axios.get(url).then(res => {
+                // this.categories = res.data
+                this.categories = res.data.map(category => {
+                    return { ...category, value: category.id, text: category.path }
+                })
+            });
         },
         save(){
             const method = this.category.id ? 'put' : 'post';
@@ -121,11 +127,6 @@ export default {
                 parentId: category.parentId,
             }; //load the category data, exclude path
         },
-    },
-    computed: {
-        categoriesOptions() {
-            return this.categories.map(c => ({ value: c.id, text: c.name }));
-        }
     },
     mounted(){
         this.loadCategories()

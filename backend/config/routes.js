@@ -39,18 +39,18 @@ module.exports = app =>{
         .delete(app.api.category.remove)
 
     app.route('/articles')
-        .all(app.config.passport.authenticate())
-        .get(admin(app.api.article.get))
-        .post(admin(app.api.article.save))
+        // .all(app.config.passport.authenticate())
+        .get(app.api.article.get)
+        .post(app.api.article.save)
 
     app.route('/articles/:id')
-        .all(app.config.passport.authenticate())
+        // .all(app.config.passport.authenticate())
         .get(app.api.article.getById)
-        .put(admin(app.api.article.save))
-        .delete(admin(app.api.article.remove))
+        .put(app.api.article.save)
+        .delete(app.api.article.remove)
 
     app.route('/categories/:id/articles')
-        .all(app.config.passport.authenticate())
+        // .all(app.config.passport.authenticate())
         .get(app.api.article.getCategory)
 
     app.route('/stats')
