@@ -23,9 +23,11 @@
     "vue": "3.5.17",
     "vue-mq": "1.0.1",
     "vue-router": "4.5.1",
+    "vue-sapling-tree": "^1.0.0-development",
     "vue-toasted": "1.1.28",
     "vue-toastification": "^2.0.0-rc.5",
     "vue3-quill": "^0.3.1",
+    "vue3-tree": "^0.11.5",
     "vuex": "4.1.0"
   },
   "devDependencies": {
