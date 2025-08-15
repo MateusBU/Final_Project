@@ -11,19 +11,28 @@
             <router-link to="/admin">
                 <i class="fa fa-cogs"></i>Administration
             </router-link>
-            <a href><i class="fa fa-sign-out"></i>Sign out</a>
+            <a href @click.prevent="logout"><i class="fa fa-sign-out"></i>Sign out</a>
         </div>
     </div>
 </template>
 
 <script>
+/* eslint-env browser */
+import { userKey } from '@/global';
 import {mapState} from 'vuex';
 import userGravatar from './userGravatar.vue';
 
 export default {
     name: 'UserDropdown',
     components: {userGravatar},
-    computed: mapState(['user']) //user from config/store.js
+    computed: mapState(['user']), //user from config/store.js
+    methods:{
+        logout(){
+            localStorage.removeItem(userKey);
+            this.$store.commit('setUser', null);
+            this.$router.push({name: 'auth'});
+        }
+    }
 }
 </script>
 
