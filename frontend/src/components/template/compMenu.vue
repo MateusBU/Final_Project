@@ -33,7 +33,7 @@ export default {
             try {
                 const url = `${baseApiUrl}/categories/tree`;
                 const res = await axios.get(url);
-                console.log('Dados recebidos:', res.data);
+                
                 this.treeData = res.data;
             } catch (err) {
                 console.error('Erro ao carregar dados da árvore:', err);

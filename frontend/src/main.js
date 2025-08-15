@@ -1,10 +1,15 @@
 import 'font-awesome/css/font-awesome.css'
 import { createApp } from 'vue'
 import App from './App.vue' 
+
 import store from './config/store';
 import router from './config/router';
+
 import setupBootstrap from './config/bootstrap'
 import Toast from 'vue-toastification'
+
+import './config/axiosError'
+
 import 'vue-toastification/dist/index.css'
 import 'quill/dist/quill.snow.css'
 
