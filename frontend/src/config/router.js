@@ -4,6 +4,7 @@ import Home from '@/components/home/MainHome.vue'
 import AdminPages from '@/components/admin/AdminPages.vue'
 import ArticleByCategory from '@/components/article/ArticleByCategory.vue'
 import ArticleById from '@/components/article/ArticleById.vue'
+import authUser from '@/components/auth/authUser.vue'
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     name: 'articleById',
     path: '/articles/:id',
     component: ArticleById
+  },
+  {
+    name: 'auth',
+    path: '/auth',
+    component: authUser
   }
 ]
 

@@ -1,10 +1,10 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}">
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
 		<mainHeader title="Mateus - knowledge base" 
-			:hideToggle="false"
-			:hideUserDropdown="false"	
+			:hideToggle="!user"
+			:hideUserDropdown="!user"	
 		/>
-		<mainMenu />
+		<mainMenu v-if="user"/>
 		<mainContent />
 		<mainFooter />
 	</div>
@@ -19,7 +19,7 @@ import mainContent from './components/template/compContent.vue';
 export default {
 	name: "App",
 	components: {mainContent, mainHeader, mainMenu, mainFooter},
-	computed: mapState(['isMenuVisible'])
+	computed: mapState(['isMenuVisible', 'user'])
 }
 </script>
 

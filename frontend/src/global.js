@@ -1,16 +1,19 @@
-import Vue from 'vue';
-export const baseApiUrl = 'http://localhost:3000' //backend/index.js -> port 3000
+import { useToast } from 'vue-toastification'
 
-export function showError(e){
-    if(e && e.response && e.response.data){
-        Vue.toasted.global.showError({msg: e.response.data})
+export const baseApiUrl = 'http://localhost:3000'
+export const userKey = '__final_project_user'
+
+export function showError(e) {
+    const toast = useToast()
+    let msg = 'Unexpected error'
+
+    if (e && e.response && e.response.data) {
+        msg = e.response.data
+    } else if (typeof e === 'string') {
+        msg = e
     }
-    else if(typeof e === 'string'){
-        Vue.toasted.global.showError({msg: e})
-    }
-    else{
-        Vue.toasted.global.showError() //default msg in msg.js
-    }
+
+    toast.error(msg)
 }
 
-export default {baseApiUrl, showError}
+export default { baseApiUrl, showError, userKey }
