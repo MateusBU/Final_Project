@@ -9,51 +9,51 @@ module.exports = app =>{
 
     //when some request from url /users, post is used
     app.route('/users')
-        //TODO descomentar .all(app.config.passport.authenticate()) //every methods (post, get, ...) will pass through this function
-        .post(app.api.user.save) //TODO colocar admin()  //it is possible, because of consign. api is the folder
+        .all(app.config.passport.authenticate()) //every methods (post, get, ...) will pass through this function
+        .post(admin(app.api.user.save))//it is possible, because of consign. api is the folder
         .get(app.api.user.get)
 
     app.route('/users/:id')    //two different urls calls tha same function (save)
-        //.all(app.config.passport.authenticate())
+        .all(app.config.passport.authenticate())
         .put(app.api.user.save)
         .get(admin(app.api.user.getByID))
         .delete(app.api.user.remove)
 
     app.route('/categories')
-        //TODO .all(app.config.passport.authenticate())
-        .post(app.api.category.save)//TODO .post(admin(app.api.category.save))
-        .get(app.api.category.get)//TODO .get(admin(app.api.category.get))
+        .all(app.config.passport.authenticate())
+        .post(admin(app.api.category.save))
+        .get(admin(app.api.category.get))
 
 // Route order matters:
 // Routes are matched top-down, so the first match is used.
 // Make sure to define more specific routes before general ones.
 
     app.route('/categories/tree')
-        //.all(app.config.passport.authenticate())
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getTree)
 
     app.route('/categories/:id')
-        //.all(app.config.passport.authenticate())
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getByID)
         .put(app.api.category.save)
         .delete(app.api.category.remove)
 
     app.route('/articles')
-        // .all(app.config.passport.authenticate())
+         .all(app.config.passport.authenticate())
         .get(app.api.article.get)
         .post(app.api.article.save)
 
     app.route('/articles/:id')
-        // .all(app.config.passport.authenticate())
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getById)
         .put(app.api.article.save)
         .delete(app.api.article.remove)
 
     app.route('/categories/:id/articles')
-        // .all(app.config.passport.authenticate())
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getCategory)
 
     app.route('/stats')
-        // .all(app.config.passport.authenticate()) //TODO descomentar
+        .all(app.config.passport.authenticate())
         .get(app.api.stats.get)
 }
